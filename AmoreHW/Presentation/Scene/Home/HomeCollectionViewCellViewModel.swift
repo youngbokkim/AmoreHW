@@ -50,10 +50,6 @@ final class HomeCollectionViewCellViewModel: ImageLoadViewModelBase {
         return saveKeyPath(rootKey: hitInfo.rootKey(), url: url)
     }
     
-    func getIdx() -> Int {
-        return idx
-    }
-    
     func bind(output:PublishRelay<UpdateType>) {
         updateCell.subscribe(onNext: {[weak self] page in
             if page == self?.idx {
