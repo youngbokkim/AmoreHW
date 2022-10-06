@@ -50,13 +50,12 @@ final class HomeCollectionViewCellViewModel: ImageLoadViewModelBase {
         return saveKeyPath(rootKey: hitInfo.rootKey(), url: url)
     }
     
-    func bind(output:PublishRelay<UpdateType>) {
-        updateCell.subscribe(onNext: {[weak self] page in
-            if page == self?.idx {
-                output.accept(.select)
-            } else {
-                output.accept(.deSelect)
-            }
-        }).disposed(by: disposeBag)
+    func bind() -> Driver<UpdateType> {
+        return updateCell
+            .map{ page -> UpdateType in
+                if page == self.idx { return .select }
+                else { return .deSelect }
+            }.asDriverComplete()
     }
+    
 }

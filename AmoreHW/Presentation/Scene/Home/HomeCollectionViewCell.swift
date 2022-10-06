@@ -57,8 +57,7 @@ fileprivate extension HomeCollectionViewCell {
         guard let viewModel = viewModel
         else { return }
  
-        viewModel.bind(output: cellUpdate)
-        cellUpdate.bind { [weak self] type in
+        viewModel.bind().drive(onNext: { [weak self] type in
             guard let self = self else { return }
             
             switch type {
@@ -75,7 +74,7 @@ fileprivate extension HomeCollectionViewCell {
                 })
                 break
             }
-        }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         if let url = viewModel.webFormatUrl {
             webFormatImgView.setImageUrl(url: url, key: viewModel.imageKeyPath(url: url))
