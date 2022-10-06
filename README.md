@@ -1,3 +1,1 @@
-# homework
-# homework
 # AmoreHW
