@@ -93,12 +93,12 @@ final class HomeViewController: UIViewController, StoryboardBased, ViewBase {
             self.timer?.invalidate()
         }).disposed(by: disposeBag)
         
-       _ = output.hitsInfo.bind { [weak self] hit in
+        output.hitsInfo.asObservable().bind(onNext: { [weak self] hit in
             guard let self = self else { return }
            
             self.titleLabel.text = "\(hit.type)"
             self.subTitleLabel.text = "\(hit.tags)"
-        }
+        })
     }
     
     func bindUI() {

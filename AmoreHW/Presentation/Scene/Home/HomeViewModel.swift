@@ -33,7 +33,7 @@ final class HomeViewModel: ViewModelBase, Stepper {
     
     struct Output {
         let dataSource: Driver<[Hit]>
-        let hitsInfo: PublishRelay<Hit>
+        let hitsInfo: Driver<Hit>
         let errorHandler: Driver<Error>
     }
     
@@ -60,15 +60,10 @@ final class HomeViewModel: ViewModelBase, Stepper {
                 }
             }
         
-        let hitsInfo = PublishRelay<Hit>()
-        let output = Output(dataSource: dataSource.asDriverComplete(),hitsInfo: hitsInfo, errorHandler: errorHandler.asDriverComplete())
-        
-        _ = input.cellSelect
-            .subscribe {[weak self] page in
-                if let data = self?.hitsData[page] {
-                    output.hitsInfo.accept(data)
-                }
-            }
+        let hitsInfo = input.cellSelect
+            .map { return self.hitsData[$0] }
+        let output = Output(dataSource: dataSource.asDriverComplete(),hitsInfo: hitsInfo.asDriverComplete(), errorHandler: errorHandler.asDriverComplete())
+
         return output
     }
     
