@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-enum updateType {
+enum UpdateType {
     case select
     case deSelect
 }
@@ -54,7 +54,7 @@ final class HomeCollectionViewCellViewModel: ImageLoadViewModelBase {
         return idx
     }
     
-    func bind(output:PublishRelay<updateType>) {
+    func bind(output:PublishRelay<UpdateType>) {
         updateCell.subscribe(onNext: {[weak self] page in
             if page == self?.idx {
                 output.accept(.select)

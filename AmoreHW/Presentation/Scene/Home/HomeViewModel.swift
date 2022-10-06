@@ -18,6 +18,9 @@ final class HomeViewModel: ViewModelBase, Stepper {
     private let useCase: HitsUseCaseInf
     private let errorHandler: PublishRelay<Error> = PublishRelay<Error>()
     private var hitsData: [Hit] = []
+    var maxLength: Int {
+        return hitsData.count
+    }
     
     init(title:String, useCase:HitsUseCaseInf) {
         self.title = title
@@ -50,9 +53,7 @@ final class HomeViewModel: ViewModelBase, Stepper {
             .map { [weak self] result -> [Hit] in
                 switch result {
                 case .success(let data):
-                    data.forEach { hit in
-                        self?.hitsData.append(hit)
-                    }
+                    self?.hitsData.append(contentsOf: data)
                     return self?.hitsData ?? []
                 case .failure(let error):
                     self?.errorHandler.accept(error)
@@ -61,13 +62,12 @@ final class HomeViewModel: ViewModelBase, Stepper {
             }
         
         let hitsInfo = input.cellSelect
-            .map { return self.hitsData[$0] }
-        let output = Output(dataSource: dataSource.asDriverComplete(),hitsInfo: hitsInfo.asDriverComplete(), errorHandler: errorHandler.asDriverComplete())
+            .map { self.hitsData[$0] }
+        let output = Output(dataSource: dataSource.asDriverComplete(),
+                            hitsInfo: hitsInfo.asDriverComplete(),
+                            errorHandler: errorHandler.asDriverComplete())
 
         return output
     }
     
-    func getMaxLength() -> Int {
-        return hitsData.count
-    }
 }

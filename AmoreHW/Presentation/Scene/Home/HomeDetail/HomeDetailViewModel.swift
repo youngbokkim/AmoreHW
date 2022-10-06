@@ -28,19 +28,13 @@ final class HomeDetailViewModel: ViewModelBase, ImageLoadViewModelBase, Stepper 
     }
     
     struct Output {
-        let hitInfo: PublishRelay<Hit>
+        let hitInfo: Driver<Hit>
     }
     
     func transform(input: Input) -> Output {
-        let hitInfo = PublishRelay<Hit>()
-        let output = Output(hitInfo: hitInfo)
-        
-        input.viewLoad.subscribe { [weak self] _ in
-            guard let self = self else { return }
-            
-            output.hitInfo.accept(self.hitInfo)
-        }.disposed(by: disposeBag)
-        
+        let hitInfo = input.viewLoad
+            .map{ self.hitInfo }
+        let output = Output(hitInfo: hitInfo.asDriverComplete())
         return output
     }
     

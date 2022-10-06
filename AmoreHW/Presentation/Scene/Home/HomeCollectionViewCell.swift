@@ -19,7 +19,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var commentCntLabel: UILabel!
     
     private var disposeBag = DisposeBag()
-    private var cellUpdate = PublishRelay<updateType>()
+    private var cellUpdate = PublishRelay<UpdateType>()
     
     var viewModel: HomeCollectionViewCellViewModel? {
         didSet {

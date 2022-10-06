@@ -41,9 +41,9 @@ class HomeDetailViewController: UIViewController, StoryboardBased, ViewBase  {
     
     func bindOutput(input: ViewModelType.Input) {
         let output = viewModel.transform(input: input)
-        output.hitInfo.bind { [weak self] hit in
+        output.hitInfo.drive(onNext: { [weak self] hit in
             self?.updateUI(info: hit)
-        }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func bindUI() {

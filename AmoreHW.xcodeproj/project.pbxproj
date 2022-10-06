@@ -45,6 +45,7 @@
 		7EA79B2028E41F41001133AE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA79B1F28E41F41001133AE /* SearchViewController.swift */; };
 		7EA79B2228E41F4E001133AE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA79B2128E41F4E001133AE /* SearchViewModel.swift */; };
 		7EA79B2428E41F5E001133AE /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EA79B2328E41F5E001133AE /* SearchViewController.storyboard */; };
+		7EB8891D28EF0EC800EA1D4D /* Int+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8891C28EF0EC800EA1D4D /* Int+Extention.swift */; };
 		FB4A648EC4B9DC1E56ABFF72 /* Pods_AmoreHW_AmoreHWUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C4F91CF47825CC3745491F /* Pods_AmoreHW_AmoreHWUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,7 @@
 		7EA79B1F28E41F41001133AE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7EA79B2128E41F4E001133AE /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7EA79B2328E41F5E001133AE /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
+		7EB8891C28EF0EC800EA1D4D /* Int+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extention.swift"; sourceTree = "<group>"; };
 		94C902389394E463E57B489B /* Pods-AmoreHWTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmoreHWTests.debug.xcconfig"; path = "Target Support Files/Pods-AmoreHWTests/Pods-AmoreHWTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B122725BB029D9C8D5237F7C /* Pods-AmoreHW-AmoreHWUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmoreHW-AmoreHWUITests.debug.xcconfig"; path = "Target Support Files/Pods-AmoreHW-AmoreHWUITests/Pods-AmoreHW-AmoreHWUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFBFE84C61592EA5EDC06628 /* Pods-AmoreHW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmoreHW.release.xcconfig"; path = "Target Support Files/Pods-AmoreHW/Pods-AmoreHW.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				7E4C00E128E6A25D00B3C0BD /* UIImageView+Extension.swift */,
 				7E796A8428E583E500C772AF /* Observable+Extension.swift */,
 				7E880CF828EBE27800CDEB7C /* UIColor+Extention.swift */,
+				7EB8891C28EF0EC800EA1D4D /* Int+Extention.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -301,8 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				7E880CFB28EC1C5D00CDEB7C /* HomeDetailViewController.swift */,
-				7E880CFD28EC1C7B00CDEB7C /* HomeDetailViewController.storyboard */,
 				7E880CFF28EC1CB400CDEB7C /* HomeDetailViewModel.swift */,
+				7E880CFD28EC1C7B00CDEB7C /* HomeDetailViewController.storyboard */,
 			);
 			path = HomeDetail;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				7E880CF928EBE27800CDEB7C /* UIColor+Extention.swift in Sources */,
 				7E880D0028EC1CB400CDEB7C /* HomeDetailViewModel.swift in Sources */,
 				7E796A8E28E586D300C772AF /* APIRequest.swift in Sources */,
+				7EB8891D28EF0EC800EA1D4D /* Int+Extention.swift in Sources */,
 				7EA79B0928E40BAF001133AE /* AppStep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -840,7 +844,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8QQTP54KV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AmoreHW/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -853,7 +857,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.homework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nate.nateonDev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -869,7 +873,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8QQTP54KV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AmoreHW/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -882,7 +886,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.homework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nate.nateonDev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

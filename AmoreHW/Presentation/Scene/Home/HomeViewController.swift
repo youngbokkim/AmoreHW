@@ -14,7 +14,7 @@ final class HomeViewController: UIViewController, StoryboardBased, ViewBase {
     typealias ViewModelType = HomeViewModel
     var viewModel: ViewModelType!
     var disposeBag: DisposeBag = DisposeBag()
-    
+
     private let constCellWidth = 250.0
     private let constCellHeight = 330.0
     private var currentIndex: CGFloat = 0.0
@@ -46,7 +46,7 @@ final class HomeViewController: UIViewController, StoryboardBased, ViewBase {
         super.viewDidLoad()
         
         setupCommon()
-        fetchedHitsData.accept(Int(1))
+        fetchedHitsData.accept(Int.start)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,19 +86,21 @@ final class HomeViewController: UIViewController, StoryboardBased, ViewBase {
             self.activityIndicator.stopAnimating()
         }.disposed(by: disposeBag)
         
-        output.errorHandler.asObservable().bind(onNext: { [weak self] error in
+        output.errorHandler.drive(onNext: { [weak self] error in
             guard let self = self else { return }
             
             self.showErrorMsg(error: error)
             self.timer?.invalidate()
         }).disposed(by: disposeBag)
         
-        output.hitsInfo.asObservable().bind(onNext: { [weak self] hit in
+        
+        output.hitsInfo.drive(onNext: { [weak self] hit in
             guard let self = self else { return }
            
             self.titleLabel.text = "\(hit.type)"
             self.subTitleLabel.text = "\(hit.tags)"
-        })
+        }).disposed(by: disposeBag)
+        
     }
     
     func bindUI() {
@@ -188,7 +190,7 @@ fileprivate extension HomeViewController {
     }
     
     func moveNextPage() {
-        guard viewModel.getMaxLength() > Int(currentIndex)
+        guard viewModel.maxLength > Int(currentIndex)
         else { return }
         
         currentIndex += 1
@@ -196,14 +198,14 @@ fileprivate extension HomeViewController {
     }
     
     func cellUpdate(){
-        guard viewModel.getMaxLength() > Int(currentIndex)
+        guard viewModel.maxLength > Int(currentIndex)
         else { return }
         
-        if viewModel.getMaxLength() == Int(currentIndex + 1) {
+        if viewModel.maxLength == Int(currentIndex + 1) {
             activityIndicator.startAnimating()
-            fetchedHitsData.accept(viewModel.getMaxLength() + 1)
+            fetchedHitsData.accept(viewModel.maxLength + 1)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                self?.cellSelect.accept(Int(self!.currentIndex))
+                self?.cellSelect.accept(Int(self?.currentIndex ?? 0))
             }
         } else {
             cellSelect.accept(Int(currentIndex))
