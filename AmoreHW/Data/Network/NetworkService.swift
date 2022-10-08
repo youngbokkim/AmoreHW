@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import RxAlamofire
 
 enum NetworkError: Error {
     case urlError
@@ -23,7 +24,15 @@ final class NetworkService: NetwokSvcInf {
         else { return Observable.just(Result<T, Error>.failure(NetworkError.urlError)) }
 
         return Observable<Result<T,Error>>.create { emitter in
-            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+ 
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForResource = 300
+            if #available(iOS 11, *) {
+              configuration.waitsForConnectivity = true
+            }
+            let session = URLSession(configuration: configuration)
+            
+            let task = session.dataTask(with: urlRequest) { (data, response, error) in
                 guard let httpResponse = response as? HTTPURLResponse else {
                     emitter.onNext(.failure(NetworkError.responseError))
                     emitter.onCompleted()
